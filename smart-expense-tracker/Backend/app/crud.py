@@ -21,6 +21,8 @@ def get_db():
         db.close()
 
 
+
+
 @router.post("/upload-receipt")
 async def upload_receipt(file: UploadFile = File(...),current_user: User = Depends(get_current_user),db: SessionLocal = Depends(get_db)):
 
@@ -62,6 +64,9 @@ async def upload_receipt(file: UploadFile = File(...),current_user: User = Depen
     db.refresh(expense)
  
     return {"message" : "Receipt uploaded successfully", "expense" : expense}
+
+
+
 
 
 @router.post("/add-expense")
@@ -116,6 +121,8 @@ def get_expense(id: int, current_user: User = Depends(get_current_user),db: Sess
 
 
 
+
+
 @router.delete("/delete_expenses/{id}")
 def delete_expense(id: int,current_user: User = Depends(get_current_user),db: SessionLocal = Depends(get_db)):
 
@@ -132,6 +139,8 @@ def delete_expense(id: int,current_user: User = Depends(get_current_user),db: Se
 
 
     return {"message": "Expense deleted successfully"}
+
+
 
 
 @router.put("/update_expense/{id}")

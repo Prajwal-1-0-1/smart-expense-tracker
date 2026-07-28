@@ -1,88 +1,133 @@
-# SpendWise - Frontend
+# SpendWise
 
-React frontend for the SpendWise expense tracker application.
+An AI-powered full stack expense tracker that extracts receipt data using Google Gemini and helps users organize, search, and visualize their expenses.
 
-## Tech Stack
+## Live Demo
 
-- React (Vite)
-- React Router
-- Axios
-- Tailwind CSS
-- Recharts
+spend-wise-brown-iota.vercel.app
+
+---
 
 ## Features
 
-- **Authentication** — Register and login with JWT. Token stored in localStorage and auto-attached via Axios interceptor. 401 responses clear the token and redirect to login.
-- **Dashboard** — Welcome message, total expenses count, total spending, recent expenses list, category spending pie chart (Recharts), and a quick upload button.
-- **Expenses Table** — Sortable by date/amount, searchable by merchant/category, filterable by category. Actions include Edit and Delete.
-- **Add / Edit Expense** — Manual expense entry form with fields for merchant, amount, category, and purchase date. Uses the same form for adding and editing.
-- **Upload Receipt** — Drag-and-drop file upload area (also supports click-to-browse). Shows upload progress, loading spinner, success/error messages, and auto-refreshes to the expenses list on success.
-- **Expense Details** — Displays merchant, amount, category, purchase date, and receipt information. Includes an Edit button.
-- **Protected Routes** — Unauthenticated users are redirected to the login page.
-- **Responsive Design** — Mobile-friendly layout with rounded cards, subtle shadows, and clean spacing.
+* JWT-based user authentication
+* Expense CRUD (Create, Read, Update, Delete)
+* AI-powered receipt parsing using Google Gemini
+* Receipt image upload
+* Expense analytics dashboard with charts
+* Search, filter, and sort expenses
+* Responsive user interface
 
-## Pages
+---
 
-| Route               | Page             |
-|---------------------|------------------|
-| `/login`            | Login            |
-| `/register`         | Register         |
-| `/dashboard`        | Dashboard        |
-| `/expenses`         | Expenses list    |
-| `/expenses/new`     | Add expense      |
-| `/expenses/:id`     | Expense details  |
-| `/expenses/:id/edit`| Edit expense     |
-| `/upload`           | Upload receipt   |
+## Tech Stack
 
-## Setup
+### Backend
 
-```bash
-npm install
-```
+* FastAPI
+* PostgreSQL
+* SQLAlchemy
+* JWT Authentication
+* Google Gemini API
 
-## Environment Variables
+### Frontend
 
-Copy `.env.example` to `.env`:
+* React (Vite)
+* Tailwind CSS
+* React Router
+* Axios
+* Recharts
 
-```bash
-cp .env.example .env
-```
-
-| Variable      | Default | Description                                |
-|---------------|---------|--------------------------------------------|
-| VITE_API_URL  | (empty) | Backend API URL. Leave empty in development (Vite proxy handles requests). Set to the backend URL in production (e.g. `http://backend:8000`). |
-
-## Development
-
-The Vite dev server proxies `/register`, `/login`, and `/crud` requests to `http://127.0.0.1:8000`, so no CORS configuration is needed.
-
-```bash
-npm run dev
-```
-
-## Build
-
-```bash
-npm run build
-```
-
-## Preview
-
-```bash
-npm run preview
-```
+---
 
 ## Project Structure
 
+```text
+SpendWise/
+├── Backend/
+├── Frontend/
+└── README.md
 ```
-src/
-  components/     — Reusable UI components (Navbar, ProtectedRoute)
-  pages/          — Route-level page components
-  services/       — API client and service functions
-  layouts/        — Page layouts (MainLayout)
-  hooks/          — Custom React hooks
-  utils/          — Utility functions
-  assets/         — Static assets
-  App.jsx         — Route definitions
-  main.jsx        — Entry point
+
+---
+
+## Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/<your-github-username>/SpendWise.git
+cd SpendWise
 ```
+
+### Backend
+
+```bash
+cd Backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+### Frontend
+
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+Before running the project, create the required `.env` files in the `Backend` and `Frontend` directories.
+
+---
+
+## Environment Variables
+
+### Backend (`Backend/.env`)
+
+```env
+GEMINI_API_KEY=
+
+DB_HOST=
+DB_PORT=
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+
+SECRET_KEY=
+ALGORITHM=
+ACCESS_TOKEN_EXPIRE_MINUTES=
+```
+
+### Frontend (`Frontend/.env`)
+
+```env
+VITE_API_URL=
+```
+
+* Leave `VITE_API_URL` empty for local development.
+* Set it to your deployed backend URL for production.
+
+---
+
+## Deployment
+
+| Service           | Platform | URL                                                |
+| ----------------- | -------- | -------------------------------------------------- |
+| Frontend          | Vercel   | https://spend-wise-l4ntsn9pz-dinnerbone.vercel.app |
+| Backend           | Render   | https://spendwise-1gfp.onrender.com                |
+| API Documentation | Render   | https://spendwise-1gfp.onrender.com/docs           |
+
+---
+
+## Future Improvements
+
+* Budget tracking and spending limits
+* Monthly and yearly expense reports
+* Cloud storage for receipt images
+* Export expenses to CSV/PDF
+
+---
+
+## Author
+
+**Prajwal Y S**

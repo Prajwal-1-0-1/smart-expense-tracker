@@ -6,6 +6,14 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from app.database import SessionLocal
 from app.models import User
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
+ALGORITHM = os.getenv("ALGORITHM")
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
@@ -29,9 +37,6 @@ def verify_password(plain_password,hashed_password):
     )
 
 
-SECRET_KEY = "9f4c2d8a1b7e3f6c5a8d2e1f4b7c9a3e6d8f1c2b5a7e9d3f"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 def create_access_token(data: dict):
 
